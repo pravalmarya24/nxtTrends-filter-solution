@@ -17,6 +17,16 @@
   }
 }
 
+.no-products-view {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 64px;
+  margin-top: 48px;
+  margin-right: 95px;
+}
+
 .products-heading {
   color: #475569;
   font-family: 'Roboto';

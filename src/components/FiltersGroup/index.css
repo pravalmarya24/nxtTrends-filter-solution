@@ -12,6 +12,43 @@
 }
 
 /* Write your CSS here */
+.input-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: 30px;
+  width: 250px;
+  background-color: #f1f5f9;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.input-element {
+  height: 30px;
+  width: 250px;
+  font-family: 'Roboto';
+  font-weight: 500;
+  font-size: 14px;
+  padding-left: 10px;
+  color: #64748b;
+  background-color: #f1f5f9;
+  outline: none;
+  border-width: 0;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.search-icon-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-right: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+
 .category-heading {
   font-family: 'Roboto';
   font-size: 15px;

@@ -125,7 +125,10 @@ class AllProductsSection extends Component {
   }
 
   clearingTheFilters = () => {
-    this.setState({activeCategoryId: '', activeRatingId: ''}, this.getProducts)
+    this.setState(
+      {activeCategoryId: '', activeRatingId: '', searchResult: ''},
+      this.getProducts,
+    )
   }
 
   filterBySearchElement = val => {
@@ -136,24 +139,39 @@ class AllProductsSection extends Component {
     this.setState({activeOptionId}, this.getProducts)
   }
 
+  enterSearchInput = () => {
+    this.getProducts()
+  }
+
   renderProductsList = () => {
     const {productsList, activeOptionId} = this.state
+    const productView = productsList.length > 0
 
     // TODO: Add No Products View
-    return (
+    return productView ? (
       <div className="all-products-container">
         <ProductsHeader
           activeOptionId={activeOptionId}
           sortbyOptions={sortbyOptions}
           changeSortby={this.changeSortby}
-          searchResult={this.searchResult}
-          filterBySearchElement={this.filterBySearchElement}
         />
         <ul className="products-list">
           {productsList.map(product => (
             <ProductCard productData={product} key={product.id} />
           ))}
         </ul>
+      </div>
+    ) : (
+      <div className="no-products-view">
+        <img
+          src="https://assets.ccbp.in/frontend/react-js/nxt-trendz/nxt-trendz-no-products-view.png"
+          className="no-products-img"
+          alt="no products"
+        />
+        <h1 className="no-products-heading">No Products Found</h1>
+        <p className="no-products-description">
+          We could not find any products. Try other filters.
+        </p>
       </div>
     )
   }
@@ -178,6 +196,9 @@ class AllProductsSection extends Component {
           filteringTheCategory={this.filteringTheCategory}
           filterTheRatingList={this.filterTheRatingList}
           clearingTheFilters={this.clearingTheFilters}
+          searchResult={this.searchResult}
+          filterBySearchElement={this.filterBySearchElement}
+          enterSearchInput={this.enterSearchInput}
         />
 
         {isLoading ? this.renderLoader() : this.renderProductsList()}

@@ -1,6 +1,8 @@
+import {BsSearch} from 'react-icons/bs'
 import './index.css'
 
 const FiltersGroup = props => {
+  const {searchResult} = props
   const renderCategoryList = () => {
     const {categoryOptions, filteringTheCategory} = props
 
@@ -13,9 +15,9 @@ const FiltersGroup = props => {
           key={eachCategory.categoryId}
           value={eachCategory.categoryId}
         >
-          <button className="btn" type="button" onClick={onFilterCategory}>
+          <p className="btn" onClick={onFilterCategory}>
             {eachCategory.name}
-          </button>
+          </p>
         </li>
       )
     })
@@ -38,7 +40,7 @@ const FiltersGroup = props => {
           <button className="btn" type="button" onClick={onFilterRating}>
             <img
               src={eachRating.imageUrl}
-              alt={eachRating.categoryId}
+              alt={`rating ${eachRating.ratingId}`}
               className="stars-size"
             />
           </button>
@@ -60,8 +62,33 @@ const FiltersGroup = props => {
     clearingTheFilters()
   }
 
+  const onSearchResult = event => {
+    const {filterBySearchElement} = props
+    filterBySearchElement(event.target.value)
+  }
+
+  const onEnterSearchValue = event => {
+    const {enterSearchInput} = props
+    if (event.key === 'Enter') {
+      enterSearchInput()
+    }
+  }
+
   return (
     <div className="filters-group-container">
+      <div className="input-container">
+        <input
+          value={searchResult}
+          type="search"
+          placeholder="search"
+          className="input-element"
+          onChange={onSearchResult}
+          onKeyDown={onEnterSearchValue}
+        />
+        <div className="search-icon-container">
+          <BsSearch />
+        </div>
+      </div>
       {categoryProductList()}
       {ratingProductList()}
       <button className="clear-btn" type="button" onClick={onClearFilters}>

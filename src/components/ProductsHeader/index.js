@@ -1,4 +1,4 @@
-import {BsFilterRight, BsSearch} from 'react-icons/bs'
+import {BsFilterRight} from 'react-icons/bs'
 
 import './index.css'
 
@@ -10,24 +10,8 @@ const ProductsHeader = props => {
 
   const {sortbyOptions, activeOptionId} = props
 
-  const onSearchResult = event => {
-    const {filterBySearchElement} = props
-    filterBySearchElement(event.target.value)
-  }
-
   return (
     <div className="products-header">
-      <div className="input-container">
-        <input
-          type="search"
-          placeholder="search"
-          className="input-element"
-          onChange={onSearchResult}
-        />
-        <div className="search-icon-container">
-          <BsSearch />
-        </div>
-      </div>
       <h1 className="products-list-heading">All Products</h1>
       <div className="sort-by-container">
         <BsFilterRight className="sort-by-icon" />
